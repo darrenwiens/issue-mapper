@@ -1,0 +1,24 @@
+---
+name: Map request
+description: Create a map
+title: "[name of your map request]"
+body:
+- type: input
+  id: latitude
+  attributes:
+    label: Latitude
+    description: "Map center latitude"
+    placeholder: "Example: 44.590278"
+  validations:
+    required: true
+- type: input
+  id: longitude
+  attributes:
+    label: Longitude
+    description: "Map center longitude"
+    placeholder: "Example: -104.715278"
+  validations:
+    required: true
+---
+
+
