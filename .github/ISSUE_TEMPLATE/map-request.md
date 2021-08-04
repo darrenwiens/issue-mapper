@@ -4,9 +4,6 @@ about: Create a map
 title: "[name of your map request]"
 labels: ''
 assignees: ''
-
----
-
 body:
 - type: input
   id: latitude
@@ -24,3 +21,6 @@ body:
     placeholder: "Example: -104.715278"
   validations:
     required: true
+---
+
+
