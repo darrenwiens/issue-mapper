@@ -36,3 +36,4 @@ jobs:
           python scripts/create_map.py
         env:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
