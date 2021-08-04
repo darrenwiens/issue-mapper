@@ -34,5 +34,5 @@ api.repos.create_or_update_file_contents(path, message=message, content=b64data[
 
 map_center_text = "Map Centered at ({lat}, {lng})"
 img_link = f"![{map_center_text}](/{path} "")"
-body = "### Map Result\n\n{map_center_text}\n\n{img_link}"
+body = f"### Map Result\n\n{map_center_text}\n\n{img_link}"
 api.issues.create_comment(ISSUE_NUMBER, body)
