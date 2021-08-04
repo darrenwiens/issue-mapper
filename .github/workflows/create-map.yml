@@ -35,5 +35,7 @@ jobs:
         run: |
           python scripts/create_map.py
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_BODY: ${{ github.event.issue.body }}
+          MAPBOX_API_KEY: ${{ secrets.MAPBOX_API_KEY }}
