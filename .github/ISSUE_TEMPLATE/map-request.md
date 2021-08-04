@@ -7,6 +7,20 @@ assignees: ''
 
 ---
 
-**This issue will create a map**
-Latitude: `[place number between brackets]`
-Longitude: `[place number between brackets]`
+body:
+- type: input
+  id: latitude
+  attributes:
+    label: Latitude
+    description: "Map center latitude"
+    placeholder: "Example: 44.590278"
+  validations:
+    required: true
+- type: input
+  id: longitude
+  attributes:
+    label: Longitude
+    description: "Map center longitude"
+    placeholder: "Example: -104.715278"
+  validations:
+    required: true
