@@ -1,9 +1,6 @@
 ---
 name: Map request
-about: Create a map
 title: "[name of your map request]"
-labels: ""
-assignees: ""
 body:
 - type: input
   id: latitude
