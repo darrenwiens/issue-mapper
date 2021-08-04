@@ -1,5 +1,6 @@
 ---
 name: Map request
+about: "Create a map"
 title: "[name of your map request]"
 body:
 - type: input
