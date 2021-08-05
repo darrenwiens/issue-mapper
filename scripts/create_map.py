@@ -1,6 +1,8 @@
 import base64
 import os
 import requests
+import sys
+
 from uuid import uuid1
 from ghapi.all import GhApi
 
@@ -32,6 +34,7 @@ try:
 except ValueError:
     body = "Either Latitude or Longitude don't seem to be numeric. Please delete this issue and try a new one."
     create_issue_comment(api, ISSUE_NUMBER, body)
+    sys.exit()
 
 mapbox_url = f"https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/{lng},{lat},9.31,0/300x200?access_token={MAPBOX_API_KEY}"
 response = requests.get(mapbox_url)
