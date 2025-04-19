@@ -1,2 +1,2 @@
-ghapi==0.1.19
+ghapi==1.0.6
 requests==2.26.0
