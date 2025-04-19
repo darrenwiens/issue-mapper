@@ -27,6 +27,10 @@ for i in range(0, len(split_body), 2):
 
 lng = body_dict["Longitude"]
 lat = body_dict["Latitude"]
+default_style = body_dict["Default Map Style"]
+light_style = body_dict.get("Light Mode Map Style")
+dark_style = body_dict.get("Dark Mode Map Style")
+
 
 try:
     lngfloat = float(lng)
@@ -36,21 +40,38 @@ except ValueError:
     create_issue_comment(api, ISSUE_NUMBER, body)
     sys.exit()
 
-mapbox_url = f"https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/{lng},{lat},9.31,0/300x200?access_token={MAPBOX_API_KEY}"
-response = requests.get(mapbox_url)
+def get_map(style, lat, lng):
+    mapbox_url = f"https://api.mapbox.com/styles/v1/mapbox/{style}/static/{lng},{lat},9.31,0/300x200?access_token={MAPBOX_API_KEY}"
+    response = requests.get(mapbox_url)
 
-data = response.content
-b64data = [base64.b64encode(data).decode('ascii')]
+    data = response.content
+    b64data = [base64.b64encode(data).decode('ascii')]
 
-cur_uuid = uuid1()
-path = f"images/{cur_uuid}.png"
-message = f"add file: {cur_uuid}"
+    cur_uuid = uuid1()
+    path = f"images/{cur_uuid}.png"
+    message = f"add file: {cur_uuid}"
 
-api.repos.create_or_update_file_contents(path, message=message, content=b64data[0])
+    api.repos.create_or_update_file_contents(path, message=message, content=b64data[0])
 
-img_path = f"https://github.com/{owner}/{repo}/raw/main/{path}"
+    img_path = f"https://github.com/{owner}/{repo}/raw/main/{path}"
+    return img_path
+
+default_img_path = get_map(default_style, lat, lng)
 map_center_text = f"Map Centered at ({lat}, {lng})"
-img_link = f"[![{map_center_text}]({img_path})]({img_path})"
-body = f"### Map Result\n\n{map_center_text}\n\n{img_link}"
+default_img_link = f"[![{map_center_text}]({default_img_path})]({default_img_path})"
+# body = f"### Map Result\n\n{map_center_text}\n\n{default_img_link}"
+
+
+body = "<picture>"
+if light_style:
+    light_img_path = get_map(light_style, lat, lng)
+    body += f'<source media="(prefers-color-scheme: light)" srcset="{light_img_path}">'
+if dark_style:
+    dark_img_path = get_map(dark_style, lat, lng)
+    body += f'<source media="(prefers-color-scheme: dark)" srcset="{dark_img_path}">'
+body += f"""
+  <img alt="Fallback image description" src="{default_img_path}">
+</picture>
+"""
 
 create_issue_comment(api, ISSUE_NUMBER, body)
