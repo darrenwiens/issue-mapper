@@ -30,7 +30,10 @@ lat = body_dict["Latitude"]
 default_style = body_dict["Default Map Style"]
 light_style = body_dict.get("Light Mode Map Style")
 dark_style = body_dict.get("Dark Mode Map Style")
-
+print(f'body_dict: {body_dict}')
+print(f'default_style: {default_style}')
+print(f'light_style: {light_style}')
+print(f'dark_style: {dark_style}')
 
 try:
     lngfloat = float(lng)
