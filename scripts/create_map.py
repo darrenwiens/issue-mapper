@@ -66,10 +66,10 @@ default_img_link = f"[![{map_center_text}]({default_img_path})]({default_img_pat
 
 
 body = "<picture>"
-if light_style:
+if light_style and light_style != "None":
     light_img_path = get_map(light_style, lat, lng)
     body += f'<source media="(prefers-color-scheme: light)" srcset="{light_img_path}">'
-if dark_style:
+if dark_style and dark_style != "None":
     dark_img_path = get_map(dark_style, lat, lng)
     body += f'<source media="(prefers-color-scheme: dark)" srcset="{dark_img_path}">'
 body += f"""
