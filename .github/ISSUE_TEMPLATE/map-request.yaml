@@ -38,7 +38,7 @@ body:
   id: light_style
   attributes:
     label: Light Mode Map Style
-    description: Map style to use in light mode
+    description: Map style to use in light mode (optional)
     options:
       - light-v11
       - dark-v11
@@ -51,8 +51,8 @@ body:
 - type: dropdown
   id: dark_style
   attributes:
-    label: Default Map Style
-    description: Map style to use in dark mode
+    label: Dark Mode Map Style
+    description: Map style to use in dark mode (optional)
     options:
       - light-v11
       - dark-v11
